@@ -6,18 +6,22 @@ const mongoose = require('mongoose')
 
 dotenv.config({ path: './config.env' })
 
+require('./db/conn')
+
 // const DB = "mongodb+srv://patrics:patrics123@cluster0.m7li0po.mongodb.net/rowdy?retryWrites=true&w=majority"
-const DB = process.env.DATABASE
+// const DB = process.env.DATABASE
+
+const PORT = process.env.PORT
 
 
-mongoose.connect(DB, {
-    // useNewUrlParser: true,
-    // useCreateIndex: true,
-    // useUnifiedTopology: true,
-    // useFindAndModify: false
-}).then(() => {
-    console.log('connection successful');
-}).catch((err) => console.log('no connection', err))
+// mongoose.connect(DB, {
+//     // useNewUrlParser: true,
+//     // useCreateIndex: true,
+//     // useUnifiedTopology: true,
+//     // useFindAndModify: false
+// }).then(() => {
+//     console.log('connection successful');
+// }).catch((err) => console.log('no connection', err))
 
 const middleware = (req, res, next) => {
     console.log(`this is middleware`)
@@ -52,6 +56,6 @@ app.get('/signup', (req, res) => {
 
 
 
-app.listen(3000, () => {
-    console.log("server is listening...");
+app.listen(PORT, () => {
+    console.log(`server is listening on Port No ${PORT}`);
 })
